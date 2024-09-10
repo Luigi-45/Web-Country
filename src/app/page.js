@@ -6,7 +6,7 @@ function RedirectPage() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/dashboard/country');
+    router.push('/dashboard');
   }, [router]);
 
   return null; 

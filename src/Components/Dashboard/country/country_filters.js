@@ -15,7 +15,6 @@ export function CountryFilters({ onFilterChange, filterText }) {
         <OutlinedInput
             value={filterText}
             onChange={handleFilterChange}
-            defaultValue=""
             fullWidth
             placeholder="Ingresar pais"
             startAdornment={
@@ -25,6 +24,7 @@ export function CountryFilters({ onFilterChange, filterText }) {
             }
             sx={{ maxWidth: '500px' }}
         />
+
 
     );
 }
