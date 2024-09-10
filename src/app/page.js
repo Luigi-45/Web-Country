@@ -1,17 +1,15 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        
-      </main>
-      <footer className={styles.footer}>
-        <div >
+function RedirectPage() {
+  const router = useRouter();
 
-        </div>
-      </footer>
-    </div>
-  );
+  useEffect(() => {
+    router.push('/dashboard/country');
+  }, [router]);
+
+  return null; 
 }
+
+export default RedirectPage;
