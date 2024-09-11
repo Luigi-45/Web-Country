@@ -15,14 +15,13 @@ const GETCOUNTRIES = gql`
         countries {
             name
             capital
-            continent{
+            continent {
                 name
             }
             emoji
         }
     }
 `;
-
 
 const CardArray = (array, size) => {
     let list = [];
@@ -32,7 +31,7 @@ const CardArray = (array, size) => {
     return list;
 };
 
-export function CountryList() {
+export function CountryList({ filterText, continentFilter }) {
     const { data, error, loading } = useQuery(GETCOUNTRIES);
     const [images, setImages] = useState({});
 
@@ -63,7 +62,16 @@ export function CountryList() {
     if (loading) return <p>Cargando información..</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const listCard = CardArray(data.countries, 3);
+    const filteredCountries = data.countries.filter(country => {
+        const matchesFilterText = country.name.toLowerCase().includes(filterText.toLowerCase());
+        const matchesContinent = continentFilter === 'America'
+            ? country.continent.name.toLowerCase().includes('america')
+            : continentFilter === '' || country.continent.name === continentFilter;
+
+        return matchesFilterText && matchesContinent;
+    });
+
+    const listCard = CardArray(filteredCountries, 3);
 
     return (
         <>
@@ -76,19 +84,19 @@ export function CountryList() {
                                     component="img"
                                     height="200"
                                     image={images[card.name] || ''}
-                                    alt={card.alt}
+                                    alt={card.name}
                                     sx={{ borderRadius: '20px 20px 0 0' }}
                                 />
-                                <CardContent sx={{ display: "flex", alignItems: 'center', padding: 0, height: "95px" }} >
+                                <CardContent sx={{ display: "flex", alignItems: 'center', padding: 0, height: "95px" }}>
                                     <div style={{ fontSize: '60px', marginRight: '10px', paddingLeft: "15px" }}>
                                         {card.emoji}
                                     </div>
-                                    <div style={{ flexGrow: 1 }}>
+                                    <div>
                                         <Typography gutterBottom variant="h5" component="div">
                                             {card.name}
                                         </Typography>
-                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                            {card.continent.name}
+                                        <Typography variant="body2" color="text.secondary">
+                                            {card.capital}
                                         </Typography>
                                     </div>
                                 </CardContent>

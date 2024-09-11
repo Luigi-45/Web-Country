@@ -12,14 +12,17 @@ const client = new ApolloClient({
 
 export default function Home() {
   const [filterText, setFilterText] = useState('');
+  const [continentFilter, setContinentFilter] = useState('');
+
   return (
     <div className={styles.page}>
       <ApolloProvider client={client}>
       <section className={styles.section}>
         <div className={styles.search}>
-          <CountryFilters onFilterChange={setFilterText} filterText={filterText} />
+          <CountryFilters onFilterChange={setFilterText} filterText={filterText} onContinentChange={setContinentFilter}
+              continentFilter={continentFilter}/>
         </div>
-        <CountryList />
+        <CountryList filterText={filterText} continentFilter={continentFilter}/>
       </section>
       </ApolloProvider>
     </div>
