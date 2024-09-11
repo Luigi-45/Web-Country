@@ -11,7 +11,6 @@ export default function RootLayout({ children }) {
   return (
     <Box
       sx={{
-        bgcolor: 'var(--mui-palette-background-default)',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
@@ -19,7 +18,7 @@ export default function RootLayout({ children }) {
       }}
     >
       <SideNav />
-      <Box sx={{ display: 'flex', flex: '1 1 auto', flexDirection: 'column', pl: { lg: 'var(--SideNav-width)' } }}>
+      <Box sx={{ display: 'flex', flex: '1 1 auto', flexDirection: 'column' }}>
         <main>
           <Container maxWidth="xl" sx={{ py: '64px' }}>
             {children}
