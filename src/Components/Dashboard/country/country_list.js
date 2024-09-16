@@ -67,11 +67,14 @@ export function CountryList({ filterText, continentFilter }) {
                             `https://pixabay.com/api/?key=${API_KEY}&q=${encodeURIComponent(countryName)}&image_type=photo&per_page=3`
                         );
                         const result = await response.json();
-                        if (result.hits.length > 0) {
+
+                        if (result.hits && result.hits.length > 0) {
                             listImage[countryName] = result.hits[0].webformatURL;
+                        } else {
+                            console.warn(`Imagenes no encontradas de ${countryName}`);
                         }
                     } catch (error) {
-                        console.error(`Error al cargar la imagen ${countryName}`, error);
+                        console.error(`Error al carga la imagen de ${countryName}`, error);
                     }
                 }
                 setImages(listImage);
@@ -79,6 +82,7 @@ export function CountryList({ filterText, continentFilter }) {
             fetchImages();
         }
     }, [data]);
+    
 
     if (loading) return <p>Cargando información..</p>;
     if (error) return <p>Error: {error.message}</p>;
