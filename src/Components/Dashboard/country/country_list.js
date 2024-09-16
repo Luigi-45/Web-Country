@@ -127,7 +127,7 @@ export function CountryList({ filterText, continentFilter }) {
                                         {card.emoji}
                                     </div>
                                     <div>
-                                        <Typography gutterBottom variant="h5" component="div">
+                                        <Typography gutterBottom variant="h5" component="div" >
                                             {card.name}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">

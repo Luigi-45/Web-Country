@@ -1,5 +1,4 @@
 import { paths } from '@/paths';
-import { Icon } from '@iconify/react';
 
 export const navItems = [
   { key: 'country', title: 'Country', href: paths.dashboard.country, icon: 'home' },

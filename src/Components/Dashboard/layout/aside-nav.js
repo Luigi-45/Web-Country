@@ -9,7 +9,6 @@ import { Icon } from '@iconify/react';
 import styles from "@/app/page.module.css";
 import { usePathname } from 'next/navigation';
 import { isNavItemActive } from '@/lib/is-nav-item-active';
-import { paths } from '@/paths';
 import { navItems } from './config';
 import { navIcons } from './nav-icons';
 
